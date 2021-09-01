@@ -17,8 +17,11 @@ class App():
         #self.background = pygame.image.load('sources/maze_2.png')
         self.cell_width = MAZE_WIDTH //28
         self.cell_height = MAZE_HEIGHT //30
+        self.walls = []                                        # create a walls list to store available space
+        self.coins = []
         self.player = Player(self, PLAYER_START_POS)
         self.load()
+
 
 
 
@@ -50,8 +53,6 @@ class App():
         screen.blit(text, pos)                   # draw the thing
 
     def load(self):
-        self.walls = []                                        # create a walls list to store available space
-        self.coins = []
         self.background = pygame.image.load('sources/maze.png') # load maze image
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
 
@@ -72,12 +73,6 @@ class App():
         for x in range (HEIGHT//self.cell_height):
             pygame.draw.line(self.background, GRAY, (0, x * self.cell_height), (WIDTH, x * self.cell_height))
 
-    def draw_coins(self):        # draw coins at all available space
-        for coin in self.coins:
-            pygame.draw.circle(self.background, YELLOW,
-                               (int(coin.x*self.cell_width+self.cell_width/2), int(coin.y*self.cell_height+self.cell_height/2)),
-                               self.cell_width//2-5)
-#           print(int(coin.x*self.cell_width+self.cell_width/2),int(coin.x*self.cell_width)+self.cell_width//2)
 
 ##############################  intro state   #######################################
 
@@ -131,9 +126,10 @@ class App():
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
         #self.draw_grid()               # draw gray grid, hide this later
-        self.draw_coins()
 
         self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
+
+        self.draw_coins()
 
         self.draw_text( 'CURRENT SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
@@ -141,10 +137,14 @@ class App():
         self.player.draw()
 
         pygame.display.update()        # update the screen
-        self.coins.pop()
+        self.coins.pop() # able to pop coins, but the draw_coins is not remove drawed coins
+        print(self.coins)
 
-
-##############################  intro state   #######################################
+    def draw_coins(self):        # draw coins at all available space
+        for coin in self.coins:
+            pygame.draw.circle(self.background, YELLOW,
+                               (int(coin.x*self.cell_width+self.cell_width/2), int(coin.y*self.cell_height+self.cell_height/2)), 5)
+#           print(int(coin.x*self.cell_width+self.cell_width/2),int(coin.x*self.cell_width)+self.cell_width//2)
 
 
 
