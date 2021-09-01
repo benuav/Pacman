@@ -51,6 +51,7 @@ class App():
 
     def load(self):
         self.walls = []                                        # create a walls list to store available space
+        self.coins = []
         self.background = pygame.image.load('sources/maze.png') # load maze image
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
 
@@ -59,22 +60,24 @@ class App():
                     for xidx, char in enumerate(line):
                         if char == "1":
                             self.walls.append(vec(xidx, yidx)) # write the available vector position into wall
-        print(len(self.walls))
+                        elif char == "C":
+                            self.coins.append(vec(xidx, yidx))
+        print(len(self.coins))
 
 
 
-    def draw_grid(self):
-        #self.load() # pass background to function
+    def draw_grid(self):         # draw line on screen, not maze image
         for x in range (WIDTH//self.cell_width):
             pygame.draw.line(self.background, GRAY, (x * self.cell_width, 0), (x* self.cell_width, HEIGHT))
-            # draw line on screen, not maze image
         for x in range (HEIGHT//self.cell_height):
             pygame.draw.line(self.background, GRAY, (0, x * self.cell_height), (WIDTH, x * self.cell_height))
 
-        # add walls onto grid
-        for wall in self.walls: # draw wall, each wall has two position vector. use vector to draw box for each wall
-            pygame.draw.rect(self.background, (120,50,160), (wall.x*self.cell_width, wall.y*self.cell_height,
-                                                              self.cell_width, self.cell_height ))
+    def draw_coins(self):        # draw coins at all available space
+        for coin in self.coins:
+            pygame.draw.circle(self.background, YELLOW,
+                               (int(coin.x*self.cell_width+self.cell_width/2), int(coin.y*self.cell_height+self.cell_height/2)),
+                               self.cell_width//2-5)
+#           print(int(coin.x*self.cell_width+self.cell_width/2),int(coin.x*self.cell_width)+self.cell_width//2)
 
 ##############################  intro state   #######################################
 
@@ -128,10 +131,9 @@ class App():
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
         #self.draw_grid()               # draw gray grid, hide this later
+        self.draw_coins()
 
         self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
-
-
 
         self.draw_text( 'CURRENT SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
@@ -139,6 +141,7 @@ class App():
         self.player.draw()
 
         pygame.display.update()        # update the screen
+        self.coins.pop()
 
 
 ##############################  intro state   #######################################
