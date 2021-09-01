@@ -14,10 +14,11 @@ class App():
         self.clock = pygame.time.Clock()   # set the time
         self.running = True
         self.state = 'intro'               # set the init state as intro
-        self.background = pygame.image.load('sources/maze.png')
+        #self.background = pygame.image.load('sources/maze_2.png')
         self.cell_width = MAZE_WIDTH //28
         self.cell_height = MAZE_HEIGHT //30
         self.player = Player(self, PLAYER_START_POS)
+        self.loadImage()
 
 
     def run(self):
@@ -47,7 +48,8 @@ class App():
         pos[1] = (pos[1] - text_size[1]) // 2
         screen.blit(text, pos)                   # draw the thing
 
-    def resize(self):
+    def loadImage(self):
+        self.background = pygame.image.load('sources/maze.png')
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT)) # call the background, resize it
 
 
@@ -113,10 +115,12 @@ class App():
 
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
-
-      #  self.resize()                  # resize the background variable
-        self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
+       # self.loadImage()                  # load resized image
         self.draw_grid()
+
+        self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
+
+
 
         self.draw_text( 'CURRENT SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
