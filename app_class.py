@@ -117,8 +117,6 @@ class App():
                     self.player.move(vec(0,-1))
                 if event.key == pygame.K_DOWN:
                     self.player.move(vec(0,1))
-                if event.key == pygame.K_SPACE:
-                    self.player.move(vec(0,0))
 
 
 
@@ -129,7 +127,7 @@ class App():
 
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
-        self.draw_grid()               # draw gray grid, hide this later
+        #self.draw_grid()               # draw gray grid, hide this later
 
         self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
 
