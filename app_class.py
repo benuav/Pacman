@@ -53,9 +53,12 @@ class App():
     def load(self):
         self.background = pygame.image.load('sources/maze.png') # load maze image
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
-        with open('sources/walls.txt', 'r') as files:
-            for line in files:
-                print(line)
+
+        with open('sources/walls.txt', 'r') as files:       # load the wall txt file
+            for yidx, line in enumerate(files):
+                for xidx, char in enumerate(line):
+                    if char == "1":
+                        self.walls.append(vec(xidx, yidx))  # write the avilable vector position into wall
 
 
 
