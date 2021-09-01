@@ -19,7 +19,6 @@ class App():
         self.cell_height = MAZE_HEIGHT //30
         self.player = Player(self, PLAYER_START_POS)
         self.load()
-        self.walls = []
 
 
 
@@ -51,14 +50,16 @@ class App():
         screen.blit(text, pos)                   # draw the thing
 
     def load(self):
+        self.walls = []                                        # create a walls list to store available space
         self.background = pygame.image.load('sources/maze.png') # load maze image
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
 
-        with open('sources/walls.txt', 'r') as files:       # load the wall txt file
-            for yidx, line in enumerate(files):
-                for xidx, char in enumerate(line):
-                    if char == "1":
-                        self.walls.append(vec(xidx, yidx))  # write the avilable vector position into wall
+        with open('sources/walls.txt', 'r') as files:          # load the wall txt file
+                for yidx, line in enumerate(files):
+                    for xidx, char in enumerate(line):
+                        if char == "1":
+                            self.walls.append(vec(xidx, yidx)) # write the available vector position into wall
+        print(len(self.walls))
 
 
 
@@ -70,6 +71,10 @@ class App():
         for x in range (HEIGHT//self.cell_height):
             pygame.draw.line(self.background, GRAY, (0, x * self.cell_height), (WIDTH, x * self.cell_height))
 
+        # add walls onto grid
+        for wall in self.walls: # draw wall, each wall has two position vector. use vector to draw box for each wall
+            pygame.draw.rect(self.background, (120,50,160), (wall.x*self.cell_width, wall.y*self.cell_height,
+                                                              self.cell_width, self.cell_height ))
 
 ##############################  intro state   #######################################
 
@@ -104,10 +109,10 @@ class App():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.player.move(vec(-1,0))
-                    print('move left')
+                    #print('move left')
                 if event.key == pygame.K_RIGHT:
                     self.player.move(vec(1,0))
-                    print('move right')
+                    #print('move right')
                 if event.key == pygame.K_UP:
                     self.player.move(vec(0,-1))
                 if event.key == pygame.K_DOWN:
@@ -124,7 +129,7 @@ class App():
 
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
-        self.draw_grid()
+        self.draw_grid()               # draw gray grid, hide this later
 
         self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))
 

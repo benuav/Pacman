@@ -10,11 +10,11 @@ class Player():
         self.playerImg = pygame.image.load('sources/player.png')
         self.dirction = vec(1,0)
         self.stored_dirction = None
-        print('dirction', self.dirction)
+        #print('dirction', self.dirction)          # print once at the begin
 
 
     def update(self):
-        print('dirction', self.dirction)
+        #print('dirction', self.dirction) # print within main loop
 
         self.pix_pos += self.dirction # final step to move the player
 
