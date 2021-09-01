@@ -18,7 +18,9 @@ class App():
         self.cell_width = MAZE_WIDTH //28
         self.cell_height = MAZE_HEIGHT //30
         self.player = Player(self, PLAYER_START_POS)
-        self.loadImage()
+        self.load()
+        self.walls = []
+
 
 
     def run(self):
@@ -48,9 +50,13 @@ class App():
         pos[1] = (pos[1] - text_size[1]) // 2
         screen.blit(text, pos)                   # draw the thing
 
-    def loadImage(self):
-        self.background = pygame.image.load('sources/maze.png')
-        self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT)) # call the background, resize it
+    def load(self):
+        self.background = pygame.image.load('sources/maze.png') # load maze image
+        self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
+        with open('sources/walls.txt', 'r') as files:
+            for line in files:
+                print(line)
+
 
 
     def draw_grid(self):
@@ -115,7 +121,6 @@ class App():
 
     def playing_draw(self):            # draw text at intro page
         self.screen.fill(BLACK)        # fill screen with black first, remove intro image
-       # self.loadImage()                  # load resized image
         self.draw_grid()
 
         self.screen.blit(self.background,(TP_BUFFER//2, TP_BUFFER//2))

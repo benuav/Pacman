@@ -18,15 +18,12 @@ class Player():
 
         self.pix_pos += self.dirction # final step to move the player
 
+        #
         # limit player movement within grid by using stored dirction vairbale
-        if int(self.pix_pos.x + TP_BUFFER//2) % self.app.cell_width == 0:
-            if self.dirction == vec(1,0) or self.dirction == vec(-1, 0):
-                if self.stored_dirction != None:
-                    self.dirction = self.stored_dirction
-        if int(self.pix_pos.y + TP_BUFFER//2) % self.app.cell_height == 0:
-            if self.dirction == vec(0,1) or self.dirction == vec(0, -1):
-                if self.stored_dirction != None:
-                    self.dirction = self.stored_dirction
+        #
+        if self.time_to_move():                         #if the pix position is on right place to change dirction
+            if self.stored_dirction != None:            # if the new direction is given by press the arrow key.
+                self.dirction = self.stored_dirction    # new direction is equle to given direction
 
         # give pix position to a grid position
         self.grid_pos[0] = (self.pix_pos[0] - TP_BUFFER + self.app.cell_width//2)//self.app.cell_width + 1
@@ -49,3 +46,11 @@ class Player():
         return vec((self.grid_pos.x * self.app.cell_width)+ (self.app.cell_width + TP_BUFFER)//2,
                    (self.grid_pos.y * self.app.cell_height) + (self.app.cell_height + TP_BUFFER)//2)
         #print(self.grid_pos, self.pix_pos) #
+
+    def time_to_move(self):
+        if int(self.pix_pos.x + TP_BUFFER//2) % self.app.cell_width == 0:
+            if self.dirction == vec(1,0) or self.dirction == vec(-1, 0):
+                return True
+        if int(self.pix_pos.y + TP_BUFFER//2) % self.app.cell_height == 0:
+            if self.dirction == vec(0,1) or self.dirction == vec(0, -1):
+                return True
