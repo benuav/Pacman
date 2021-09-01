@@ -1,7 +1,7 @@
 import pygame, sys, copy
 from settings import *
 from player_class import *
-from enemy_class import *
+#from enemy_class import *
 
 pygame.init()             # initialize the pygame
 vec = pygame.math.Vector2 # for velosity(speed), acceliration, position (x,y)

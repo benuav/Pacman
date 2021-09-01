@@ -18,6 +18,7 @@ class Player():
 
         self.pix_pos += self.dirction # final step to move the player
 
+        # limit player movement within grid by using stored dirction vairbale
         if int(self.pix_pos.x + TP_BUFFER//2) % self.app.cell_width == 0:
             if self.dirction == vec(1,0) or self.dirction == vec(-1, 0):
                 if self.stored_dirction != None:
