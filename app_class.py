@@ -131,16 +131,17 @@ class App():
 
         self.draw_coins()
 
-        self.draw_text( 'CURRENT SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
+        self.draw_text( 'CURRENT SCORE: {}'.format(self.player.current_score),
+                        self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
 
         self.player.draw()
-        self.coins.pop() # able to pop coins, but the draw_coins is not remove drawed coins
+        #self.coins.pop()              # able to pop coins, but the draw_coins is not remove drawed coins
         print(self.coins)
 
         pygame.display.update()        # update the screen
 
-    def draw_coins(self):        # draw coins at all available space
+    def draw_coins(self):              # draw coins at all available space
 
         for coin in self.coins:
             pygame.draw.circle(self.screen, YELLOW,
