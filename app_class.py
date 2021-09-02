@@ -89,7 +89,7 @@ class App():
     def intro_draw(self): # draw text at intro page
         self.screen.fill(BLACK)
         self.draw_text('START GAME - 448,596', self.screen, START_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT])
-        self.draw_text('Sha Bai - 448,496', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+100])
+        self.draw_text('Shichen Bai S5151481', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+100])
         self.draw_text('Zhuoheng Li - 448,496', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+150])
 
         self.draw_text('HIGHEST SCORE - 0,0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [250,30])
