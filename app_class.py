@@ -135,15 +135,17 @@ class App():
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
 
         self.player.draw()
-
-        pygame.display.update()        # update the screen
         self.coins.pop() # able to pop coins, but the draw_coins is not remove drawed coins
         print(self.coins)
 
+        pygame.display.update()        # update the screen
+
     def draw_coins(self):        # draw coins at all available space
+
         for coin in self.coins:
-            pygame.draw.circle(self.background, YELLOW,
-                               (int(coin.x*self.cell_width+self.cell_width/2), int(coin.y*self.cell_height+self.cell_height/2)), 5)
+            pygame.draw.circle(self.screen, YELLOW,
+                               (int(coin.x*self.cell_width+self.cell_width/2)+TP_BUFFER//2,
+                                int(coin.y*self.cell_height+self.cell_height/2)+TP_BUFFER//2), 5)
 #           print(int(coin.x*self.cell_width+self.cell_width/2),int(coin.x*self.cell_width)+self.cell_width//2)
 
 
