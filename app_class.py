@@ -10,27 +10,30 @@ vec = pygame.math.Vector2 # for velosity(speed), acceliration, position (x,y)
 
 class App():
     def __init__(self):
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT)) # set screen size
-        self.clock = pygame.time.Clock()   # set the time
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))   # set screen size
+        self.clock = pygame.time.Clock()                         # set the time
         self.running = True
-        self.state = 'intro'               # set the init state as intro
+        self.state = 'intro'                                     # set the init state as intro
         #self.background = pygame.image.load('sources/maze_2.png')
         self.cell_width = MAZE_WIDTH //28
         self.cell_height = MAZE_HEIGHT //30
-        self.walls = []                                        # create a walls list to store available space
+        self.walls = []                                          # create a walls list to store available space
         self.coins = []
-        self.player = Player(self, PLAYER_START_POS)
-        self.load()
+        self.p_pos = None
+        self.load()                                              # always run load class before player class
+        self.player = Player(self, self.p_pos)
+
+
 
 
 
 
     def run(self):
         while self.running:
-            if self.state == 'intro':      # display when state = intro
+            if self.state == 'intro':                           # display when state = intro
                 self.intro_events()
                 self.intro_update()
-                self.intro_draw()   # draw things
+                self.intro_draw()                               # draw things
             elif self.state == 'playing':
                 self.playing_events()
                 self.playing_draw()
@@ -63,6 +66,9 @@ class App():
                             self.walls.append(vec(xidx, yidx)) # write the available vector position into wall
                         elif char == "C":
                             self.coins.append(vec(xidx, yidx))
+                        elif char == "P":
+                            self.p_pos = vec(xidx,yidx)
+                            print("p is detected", self.p_pos)
         print(len(self.coins))
 
 
