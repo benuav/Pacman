@@ -12,12 +12,12 @@ class Player():
         self.stored_direction = None
         self.able_to_move = True
         self.current_score = 0
-
+        self.speed = 2 # speed is used to time the direction
 
     def update(self):
 
         if self.able_to_move:                # if the the forward direction is not wall, return True
-            self.pix_pos += self.direction   # final step to move the player
+            self.pix_pos += self.direction*self.speed   # final step to move the player
 
         #######################################################################
         # limit player movement within grid by using stored direction variable #
