@@ -83,8 +83,8 @@ class App():
 
 
     def make_enemies(self):
-        for pos in self.e_pos:         # for each position in enemy position list
-            self.enemies.append(Enemy(self, pos))                # append Enemy class to enemies list from app
+        for idx,pos in enumerate(self.e_pos):                # for each position in enemy position list
+            self.enemies.append(Enemy(self, pos, idx))       # append Enemy class to enemies list from app
 
 
 
