@@ -11,6 +11,7 @@ class Player():
         self.direction = vec(1,0)
         self.stored_direction = None
         self.able_to_move = True
+        self.current_score = 0
 
 
     def update(self):
@@ -31,9 +32,12 @@ class Player():
         self.grid_pos[0] = (self.pix_pos[0] - TP_BUFFER + self.app.cell_width//2)//self.app.cell_width + 1
         self.grid_pos[1] = (self.pix_pos[1] - TP_BUFFER + self.app.cell_height//2)//self.app.cell_height + 1
 
-    def draw(self):
+        if self.on_coin():                           # if player meet coin, remove the coin
+            self.eat_coin()
+
+
+    def draw(self):        # draw the player based on the pix position
         pygame.draw.circle(self.app.screen, YELLOW, (int(self.pix_pos.x), int(self.pix_pos.y)), self.app.cell_width//2-2)
-        # draw the player based on the pix position
 
         #############################################################################
         ###                          draw the grid in red rect                      #
@@ -42,6 +46,18 @@ class Player():
         #                  self.grid_pos[1]* self.app.cell_height + TP_BUFFER//2,   #
         #                  self.app.cell_width, self.app.cell_height), 1)           #
         #############################################################################
+
+    def on_coin(self):
+        if self.grid_pos in self.app.coins:
+            return True
+        else:
+            return False
+
+    def eat_coin(self):
+        self.app.coins.remove(self.grid_pos)
+        self.current_score += 1
+
+
     def move(self, direction):
         self.stored_direction = direction
 

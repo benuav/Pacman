@@ -89,8 +89,8 @@ class App():
     def intro_draw(self): # draw text at intro page
         self.screen.fill(BLACK)
         self.draw_text('START GAME - 448,596', self.screen, START_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT])
-        self.draw_text('Sha Bai - 448,496', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+100])
-        self.draw_text('Zhuoheng Li - 448,496', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+150])
+        self.draw_text('Shichen Bai S5151481', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+100])
+        self.draw_text('Zhuoheng Li S5151957', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+150])
 
         self.draw_text('HIGHEST SCORE - 0,0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [250,30])
 
@@ -131,19 +131,22 @@ class App():
 
         self.draw_coins()
 
-        self.draw_text( 'CURRENT SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
+        self.draw_text( 'CURRENT SCORE: {}'.format(self.player.current_score),
+                        self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
         self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
 
         self.player.draw()
-
-        pygame.display.update()        # update the screen
-        self.coins.pop() # able to pop coins, but the draw_coins is not remove drawed coins
+        #self.coins.pop()              # able to pop coins, but the draw_coins is not remove drawed coins
         print(self.coins)
 
-    def draw_coins(self):        # draw coins at all available space
+        pygame.display.update()        # update the screen
+
+    def draw_coins(self):              # draw coins at all available space
+
         for coin in self.coins:
-            pygame.draw.circle(self.background, YELLOW,
-                               (int(coin.x*self.cell_width+self.cell_width/2), int(coin.y*self.cell_height+self.cell_height/2)), 5)
+            pygame.draw.circle(self.screen, YELLOW,
+                               (int(coin.x*self.cell_width+self.cell_width/2)+TP_BUFFER//2,
+                                int(coin.y*self.cell_height+self.cell_height/2)+TP_BUFFER//2), 5)
 #           print(int(coin.x*self.cell_width+self.cell_width/2),int(coin.x*self.cell_width)+self.cell_width//2)
 
 
