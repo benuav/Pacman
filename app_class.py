@@ -76,6 +76,9 @@ class App():
                             #print("p is detected", self.p_pos)
                         elif char in ["2","3","4","5"]:
                             self.e_pos.append(vec(xidx,yidx))
+                        elif char == "B":
+                            pygame.draw.rect(self.background, BLACK, (xidx * self.cell_width, yidx*self.cell_height,
+                                                                      self.cell_width, self.cell_height) )
         print(len(self.coins))
 
 

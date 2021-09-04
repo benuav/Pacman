@@ -7,7 +7,8 @@ class Enemy:
     def __init__(self,app,pos):
         self.app = app
         self.grid_pos = pos
-        self.pix_pos = self.get_pix_pos()
+        self.pix_pos = self.get_pix_pos()       # get each enemy position
+        self.radius = self.app.cell_width//2  # set enemy size
 
 
     def get_pix_pos(self):
@@ -20,5 +21,5 @@ class Enemy:
         pass
 
     def draw(self):
-        pygame.draw.circle(self.app.screen, (255,255,255), (int(self.pix_pos.x), int(self.pix_pos.y)), 15)
+        pygame.draw.circle(self.app.screen, (255,255,255), (int(self.pix_pos.x), int(self.pix_pos.y)), self.radius)
 
