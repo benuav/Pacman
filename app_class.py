@@ -137,7 +137,7 @@ class App():
 
         self.player.draw()
         #self.coins.pop()              # able to pop coins, but the draw_coins is not remove drawed coins
-        print(self.coins)
+        #print(self.coins)
 
         pygame.display.update()        # update the screen
 

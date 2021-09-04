@@ -11,8 +11,8 @@ fps = 60
 #colour settings
 BLACK = (0,0,0)
 WHITE = (255,255,255)
-BLUE = (170,130,60)
-YELLOW = (30,130,160)
+BLUE = (30,130,160)
+YELLOW = (170,130,60)
 RED = (255,160,25)
 GRAY = (110,110,110)
 

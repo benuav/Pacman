@@ -3,5 +3,5 @@ if __name__ == '__main__':
     app = App()
     app.run()
 
-# Ben
-# Zhuoheng
+# Student 1: Shichen Bai  S5151481
+# Student 2: Zhuoheng Li  S5151957
