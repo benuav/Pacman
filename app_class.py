@@ -113,11 +113,17 @@ class App():
 
     def intro_draw(self): # draw text at intro page
         self.screen.fill(BLACK)
-        self.draw_text('START GAME - 448,596', self.screen, START_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT])
-        self.draw_text('Shichen Bai S5151481', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+100])
-        self.draw_text('Zhuoheng Li S5151957', self.screen, START_TEXT_SIZE, RED, START_FONT, [WIDTH,HEIGHT+150])
+        self.draw_text('HIGHEST SCORE - 0,0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [250,30])
 
-        self.draw_text('HIGHEST SCORE - 0,0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [250,30])
+        self.draw_text('2021 T2, 7805 ICT', self.screen, YEAR_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-300])
+        self.draw_text('Shichen Bai S5151481', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-200])
+        self.draw_text('Zhuoheng Li S5151957', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-150])
+
+        self.draw_text('START', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT])
+        self.draw_text('CONFIGURE', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+150])
+        self.draw_text('EXIT', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+300])
+
+
 
 
         pygame.display.update()             # update the screen
