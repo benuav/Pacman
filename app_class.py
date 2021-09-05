@@ -2,6 +2,8 @@ import pygame, sys, copy
 from settings import *
 from player_class import *
 from enemy_class import *
+from test import *
+
 
 pygame.init()             # initialize the pygame
 vec = pygame.math.Vector2 # for velosity(speed), acceliration, position (x,y)
@@ -118,6 +120,7 @@ class App():
         self.screen.fill(BLACK)
 
         self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
+        button(RED,250,30,100,20,"Ben")
 
         self.draw_text('HIGHEST SCORE - 0,0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [250,30])
 
