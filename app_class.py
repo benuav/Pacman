@@ -64,6 +64,9 @@ class App():
         self.background = pygame.image.load('sources/maze.png') # load maze image
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH,MAZE_HEIGHT))  # call the background, resize it
 
+        self.logo = pygame.image.load('sources/pac-man-logo.jpg')
+        self.logo = pygame.transform.scale(self.logo, (LOGO_WIDTH, LOGO_HEIGHT)) # resize the logo
+
         with open('sources/walls.txt', 'r') as files:          # load the wall txt file
                 for yidx, line in enumerate(files):
                     for xidx, char in enumerate(line):
@@ -113,15 +116,18 @@ class App():
 
     def intro_draw(self): # draw text at intro page
         self.screen.fill(BLACK)
+
+        self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
+
         self.draw_text('HIGHEST SCORE - 0,0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [250,30])
 
-        self.draw_text('2021 T2, 7805 ICT', self.screen, YEAR_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-300])
-        self.draw_text('Shichen Bai S5151481', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-200])
-        self.draw_text('Zhuoheng Li S5151957', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-150])
+        self.draw_text('2021 T2, 7805 ICT', self.screen, YEAR_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-200])
+        self.draw_text('Shichen Bai S5151481', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-100])
+        self.draw_text('Zhuoheng Li S5151957', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-50])
 
-        self.draw_text('START', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT])
-        self.draw_text('CONFIGURE', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+150])
-        self.draw_text('EXIT', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+300])
+        self.draw_text('START', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+100])
+        self.draw_text('CONFIGURE', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+250])
+        self.draw_text('EXIT', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+400])
 
 
 
@@ -165,8 +171,8 @@ class App():
         self.draw_coins()
 
         self.draw_text( 'CURRENT SCORE: {}'.format(self.player.current_score),
-                        self.screen, START_TEXT_SIZE, WHITE, START_FONT, [150,25])
-        self.draw_text( 'HIGHEST SCORE: 0', self.screen, START_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
+                        self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [150,25])
+        self.draw_text( 'HIGHEST SCORE: 0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [WIDTH,25])
 
         self.player.draw()
         #self.coins.pop()              # able to pop coins, but the draw_coins is not remove drawed coins
