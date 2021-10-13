@@ -1,6 +1,6 @@
 from pygame.math import Vector2 as vec
 
-#screen settings
+#screen settings#
 WIDTH, HEIGHT = 610, 670
 TP_BUFFER = 50
 

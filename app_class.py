@@ -52,7 +52,7 @@ class App():
         pygame.quit()
         sys.exit()
 
-##############################  help state   #######################################
+##############################  help state   ########################################
 
     def draw_text(self, words, screen, size,colour,font_name,pos):
         font = pygame.font.SysFont(font_name, size)

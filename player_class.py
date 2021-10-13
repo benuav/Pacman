@@ -88,3 +88,4 @@ class Player():
 
     ''' time to move: when the new direction is gevin, can move function will return True, 
     then the able to move will change to True.'''
+    #
