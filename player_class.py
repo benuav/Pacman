@@ -39,6 +39,7 @@ class Player():
 
         if self.on_coin():                           # if player meet coin, remove the coin
             self.eat_coin()
+        self.win()
 
 
     def draw(self):        # draw the player based on the pix position
@@ -60,6 +61,11 @@ class Player():
             if int(self.pix_pos.y + TP_BUFFER // 2) % self.app.cell_height == 0:
                 if self.direction == vec(0, 1) or self.direction == vec(0, -1):
                     return True
+        else:
+            return False
+    def win(self):
+        if self.current_score == 287:
+            return True
         else:
             return False
 

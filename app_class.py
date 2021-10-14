@@ -50,6 +50,14 @@ class App():
                 self.configure_events()
                 self.configure_draw()
                 self.configure_update()
+            elif self.state == 'win':                     # configure event
+                self.win_events()
+                self.win_draw()
+                self.win_update()
+            elif self.state == 'over':                     # configure event
+                self.over_events()
+                self.over_draw()
+                self.over_update()
             else:
                 self.running = False
             self.clock.tick(fps)           # control the loop speed
@@ -121,7 +129,7 @@ class App():
         for event in pygame.event.get():    # access the list of event from pygame
             if event.type == pygame.QUIT:   # when press exit on the window
                 self.running = False        # brake the while loop
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                 self.state = 'playing'
             if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
                 self.state = 'configure'
@@ -157,9 +165,9 @@ class App():
         for event in pygame.event.get():    # access the list of event from pygame
             if event.type == pygame.QUIT:   # when press exit on the window
                 self.running = False        # brake the while loop
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
-                self.state = 'playing'
             if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                self.state = 'playing'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                 self.state = 'intro'
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
@@ -199,8 +207,14 @@ class App():
         for event in pygame.event.get():    # access the list of event from pygame
             if event.type == pygame.QUIT:   # when press exit on the window
                 self.running = False        # brake the while loop
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                 self.state = 'intro'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_4:
+                self.state = 'over'
+                print('over')
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
+                self.state = 'win'
+                print('win')
 
 
             if event.type == pygame.KEYDOWN:
@@ -255,3 +269,53 @@ class App():
 
 
 
+##############################  win state   #######################################
+
+    def win_events(self):                 # function: quit program
+        for event in pygame.event.get():    # access the list of event from pygame
+            if event.type == pygame.QUIT:   # when press exit on the window
+                self.running = False        # brake the while loop
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                self.state = 'playing'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                self.state = 'intro'
+
+
+    def win_update(self):
+        pass
+
+    def win_draw(self): # draw text at intro page
+        self.screen.fill(BLACK)
+
+        self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
+
+        self.draw_text('You Win!!!', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+100])
+
+
+
+        pygame.display.update()             # update the screen
+
+
+##############################  over state   #######################################
+
+    def over_events(self):                 # function: quit program
+        for event in pygame.event.get():    # access the list of event from pygame
+            if event.type == pygame.QUIT:   # when press exit on the window
+                self.running = False        # brake the while loop
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                self.state = 'playing'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                self.state = 'intro'
+
+
+    def over_update(self):
+        pass
+
+    def over_draw(self): # draw text at intro page
+        self.screen.fill(BLACK)
+
+        self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
+
+        self.draw_text('You Loose...', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+100])
+
+        pygame.display.update()             # update the screen
