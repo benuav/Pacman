@@ -74,6 +74,10 @@ class App():
         self.logo = pygame.image.load('sources/pac-man-logo.jpg')
         self.logo = pygame.transform.scale(self.logo, (LOGO_WIDTH, LOGO_HEIGHT)) # resize the logo
 
+        # load character picture
+  #      self.player_icon = pygame.image.load('sources/player.png')
+  #      self.player_icon = pygame.transform.scale(self.player_icon, (5,5))
+
         with open('sources/walls.txt', 'r') as files:          # load the wall txt file
                 for yidx, line in enumerate(files):
                     for xidx, char in enumerate(line):
@@ -128,7 +132,8 @@ class App():
         self.screen.fill(BLACK)
 
         self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
-        button(RED,250,30,100,20,"Ben")
+        button(RED,250,30,100,20,"Benaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") # what is this?????
+
 
         self.draw_text('HIGHEST SCORE - 0,0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [250,30])
 

@@ -4,6 +4,7 @@ vec = pygame.math.Vector2
 
 class Player():
     def __init__(self, app, pos):
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen size
         self.app = app
         self.grid_pos = pos                       # the position based on the grid count
         self.pix_pos = self.get_pix_pos()         # use grid position, to gerate the current player position
@@ -13,6 +14,10 @@ class Player():
         self.able_to_move = True
         self.current_score = 0
         self.speed = 2 # speed is used to time the direction
+
+        # load player icon
+        self.player_icon = pygame.image.load('sources/player.png')
+        self.player_icon = pygame.transform.scale(self.player_icon, (20,20))
 
     def update(self):
 
@@ -37,8 +42,8 @@ class Player():
 
 
     def draw(self):        # draw the player based on the pix position
-        pygame.draw.circle(self.app.screen, YELLOW, (int(self.pix_pos.x), int(self.pix_pos.y)), self.app.cell_width//2-2)
-
+        #pygame.draw.circle(self.app.screen, YELLOW, (int(self.pix_pos.x), int(self.pix_pos.y)), self.app.cell_width//2-2)
+        self.screen.blit(self.player_icon, (int(self.pix_pos.x-10), int(self.pix_pos.y-10)))
         #############################################################################
         ###                          draw the grid in red rect                      #
         #pygame.draw.rect(self.app.screen, RED,                                     #
