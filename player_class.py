@@ -43,7 +43,6 @@ class Player():
 
 
     def draw(self):        # draw the player based on the pix position
-        #pygame.draw.circle(self.app.screen, YELLOW, (int(self.pix_pos.x), int(self.pix_pos.y)), self.app.cell_width//2-2)
         self.screen.blit(self.player_icon, (int(self.pix_pos.x-10), int(self.pix_pos.y-10)))
         #############################################################################
         ###                          draw the grid in red rect                      #
