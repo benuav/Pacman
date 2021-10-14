@@ -41,10 +41,14 @@ class App():
                 self.intro_events()
                 self.intro_update()
                 self.intro_draw()                               # draw things
-            elif self.state == 'playing':
+            elif self.state == 'playing':                       # play event
                 self.playing_events()
                 self.playing_draw()
                 self.playing_update()
+            elif self.state == 'configure':                     # configure event
+                self.configure_events()
+                self.configure_draw()
+                self.configure_update()
             else:
                 self.running = False
             self.clock.tick(fps)           # control the loop speed
@@ -84,7 +88,8 @@ class App():
                         elif char == "B":
                             pygame.draw.rect(self.background, BLACK, (xidx * self.cell_width, yidx*self.cell_height,
                                                                       self.cell_width, self.cell_height) )
-        print(len(self.coins))
+        print(len(self.coins)) # print number of coins
+        print()
 
 
     def make_enemies(self):
@@ -110,8 +115,10 @@ class App():
         for event in pygame.event.get():    # access the list of event from pygame
             if event.type == pygame.QUIT:   # when press exit on the window
                 self.running = False        # brake the while loop
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
                 self.state = 'playing'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
+                self.state = 'configure'
 
     def intro_update(self):
         pass
@@ -137,12 +144,51 @@ class App():
 
         pygame.display.update()             # update the screen
 
+##############################  Configure state   #######################################
+
+    def configure_events(self):                 # function: quit program
+        for event in pygame.event.get():    # access the list of event from pygame
+            if event.type == pygame.QUIT:   # when press exit on the window
+                self.running = False        # brake the while loop
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_1:
+                self.state = 'playing'
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                self.state = 'intro'
+
+    def configure_update(self):
+        pass
+
+    def configure_draw(self): # draw text at intro page
+        self.screen.fill(BLACK)
+
+        self.screen.blit(self.logo,(61, TP_BUFFER*1.5))
+        button(RED,250,30,100,20,"Ben")
+
+        self.draw_text('HIGHEST SCORE - 0,0', self.screen, SCORE_TEXT_SIZE, WHITE, START_FONT, [250,30])
+
+        #self.draw_text('2021 T2, 7805 ICT', self.screen, YEAR_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-200])
+        #self.draw_text('Shichen Bai S5151481', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-100])
+        #self.draw_text('Zhuoheng Li S5151957', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-50])
+
+        self.draw_text('SOUND', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+100])
+        self.draw_text('CONTROL', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+250])
+        self.draw_text('BACK', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+400])
+
+
+
+
+        pygame.display.update()             # update the screen
+
+
 ##############################  playing state   #######################################
 
     def playing_events(self):                 # function: quit program
         for event in pygame.event.get():    # access the list of event from pygame
             if event.type == pygame.QUIT:   # when press exit on the window
                 self.running = False        # brake the while loop
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+                self.state = 'intro'
+
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:

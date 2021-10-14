@@ -81,11 +81,10 @@ class Player():
 
     def can_move(self):
         for wall in self.app.walls:
-            if vec(self.grid_pos + self.direction) == wall: # the forward next step is equal to wall
+            if vec(self.grid_pos + self.direction) == wall:                # the forward next step is equal to wall
                 return False
-        return True                                         # when the wall is not on the direction
+        return True                                                        # when the wall is not on the direction
 
 
     ''' time to move: when the new direction is gevin, can move function will return True, 
     then the able to move will change to True.'''
-    #
