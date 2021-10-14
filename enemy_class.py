@@ -7,6 +7,7 @@ vec = pygame.math.Vector2
 class Enemy:
     def __init__(self,app,pos,number):
         self.app = app
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set screen size
         self.grid_pos = pos
         self.pix_pos = self.get_pix_pos()       # get each enemy position
         self.radius = self.app.cell_width//2  # set enemy size
@@ -16,6 +17,13 @@ class Enemy:
         self.personality = self.set_personality()
         self.target = None
         self.speed = self.set_speed()
+
+        # load player icon
+        self.ene_red_icon = pygame.image.load('sources/botRed.png')
+        self.ene_red_icon = pygame.transform.scale(self.ene_red_icon, (20,20))
+
+        self.ene_yellow_icon = pygame.image.load('sources/botYellow.png')
+        self.ene_yellow_icon = pygame.transform.scale(self.ene_yellow_icon, (20, 20))
 
 
 
@@ -34,9 +42,16 @@ class Enemy:
 
 
     def draw(self):
-        pygame.draw.circle(self.app.screen, self.colour, (int(self.pix_pos.x)
-                                                          , int(self.pix_pos.y)), self.radius)
+        #pygame.draw.circle(self.app.screen, self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)), self.radius)
 
+        if self.number == 0:
+            return self.screen.blit(self.ene_red_icon, (int(self.pix_pos.x - 10), int(self.pix_pos.y - 10)))
+        elif self.number == 1:
+            return self.screen.blit(self.ene_yellow_icon, (int(self.pix_pos.x - 10), int(self.pix_pos.y - 10)))
+        elif self.number == 2:
+            return self.screen.blit(self.ene_yellow_icon, (int(self.pix_pos.x - 10), int(self.pix_pos.y - 10)))
+        elif self.number == 3:
+            return self.screen.blit(self.ene_yellow_icon, (int(self.pix_pos.x - 10), int(self.pix_pos.y - 10)))
 
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
@@ -122,8 +137,6 @@ class Enemy:
                     target = step["Current"]
                     shortest.insert(0, step["Current"])
         return shortest
-
-
 
 
     def get_random_direction(self):

@@ -100,6 +100,7 @@ class App():
     def make_enemies(self):
         for idx,pos in enumerate(self.e_pos):                # for each position in enemy position list
             self.enemies.append(Enemy(self, pos, idx))       # append Enemy class to enemies list from app
+            print('idx',idx,'pos',pos)
             # get index and position value from enemy position, run through each iteration
 
 
