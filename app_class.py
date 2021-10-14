@@ -16,6 +16,7 @@ class App():
         self.clock = pygame.time.Clock()                         # set the time
         self.running = True
         self.state = 'intro'                                     # set the init state as intro
+        self.rand = 'FIXED'
         #self.background = pygame.image.load('sources/maze_2.png')
         self.cell_width = MAZE_WIDTH //28
         self.cell_height = MAZE_HEIGHT //30
@@ -155,6 +156,11 @@ class App():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
                 self.state = 'intro'
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                self.rand = 'RANDOM'
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                self.rand = 'FIXED'
+
     def configure_update(self):
         pass
 
@@ -171,7 +177,8 @@ class App():
         #self.draw_text('Zhuoheng Li S5151957', self.screen, NAME_TEXT_SIZE, BLUE, START_FONT, [WIDTH,HEIGHT-50])
 
         self.draw_text('SOUND', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+100])
-        self.draw_text('CONTROL', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+250])
+
+        self.draw_text('MAZE TYPE: '+ self.rand, self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+250])
         self.draw_text('BACK', self.screen, START_TEXT_SIZE, YELLOW, START_FONT, [WIDTH,HEIGHT+400])
 
 
