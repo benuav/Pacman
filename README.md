@@ -1,2 +1,2 @@
-# ML-PacMan
-Machine Learning Pac Man game simulator
+# Pacman
+basic pacman game in pygame
